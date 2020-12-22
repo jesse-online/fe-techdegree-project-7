@@ -1,6 +1,6 @@
-/*//////////////////// 
+/*////////////////////////// 
         Notifications
-///////////////////*/
+//////////////////////////*/
 
 const bell = document.getElementById("bell");
 const notificationWrapper = document.getElementById("notifications");
@@ -24,18 +24,27 @@ bell.addEventListener( "click", () => {
     }
 });
 
+// Get hard-coded notifications in index.html and display them
 window.addEventListener( "load", () => {
     for ( let i=0; i<notifications.length; i++ ) {
         let notificationCloser = notifications[i].lastElementChild;
+        
+        // Listen for a click on the 'x' in each notification
         notificationCloser.addEventListener( "click", (e) => {
             let notificationCloser = e.target;
             let notificationInstance = notificationCloser.parentNode;
             let countOfNotifications = notificationWrapper.children.length;
+            
+            // If the last notification is closed,
+            // replace its content with a congratulatory message
+            // for the user and remove the 'x'
             if ( countOfNotifications === 1 ) {
                 let notificationText = notificationInstance.firstElementChild;
                 notificationText.textContent = "Congrats! You're all caught up."
                 notificationCloser.remove();
             } else {
+            
+            // Otherwise just remove the notification
                 notificationInstance.remove();
             }
              
