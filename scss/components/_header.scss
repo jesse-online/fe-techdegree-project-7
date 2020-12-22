@@ -1,0 +1,121 @@
+/* ============================================= */
+/*              Header                           */
+/* ============================================= */
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background: $color-primary;
+    padding: 1rem;
+}
+
+#site-title {
+    margin: 0;
+    //font-size: 1.5rem;
+    color: $white;
+}
+
+#header-wrapper-right {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#bell-wrapper {
+    position: relative;
+    border-right: solid 2px rgba(211, 211, 211, 0.514);
+    width: 2rem;
+    height: 2rem;
+    padding-right: 2em;
+}
+
+#bell-wrapper::after {
+    position: absolute;
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: $color-accent;
+    border-radius: 50%;
+    top: .1rem;
+    left: .8rem;
+    cursor: pointer;
+    opacity: var(--o, 1);
+}
+
+#bell {
+    height: 1rem;
+    width: 1rem;
+    margin-top: .5rem;
+    cursor: pointer;
+}
+
+@keyframes ring {
+    25% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+}
+
+#bell-path {
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#bell:hover #bell-path {
+    animation: ring 1s ease-out;
+}
+
+#notifications {
+    width: 11rem;
+    background: $white;
+    border-radius: 5px;
+    border: 1px solid $color-border;
+}
+
+.notification {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 1rem;
+
+    & p {
+        margin: 0;
+    }
+
+    & span {
+        margin-left: .25rem;
+        padding: 0 0 .25rem .25rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    &:not(:first-child) {
+        border-top: 1px solid $color-border;
+    }
+}
+
+#profile-stack {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-pic {
+    width: $font-size-h2;
+    height: $font-size-h2;
+    border-radius: 50%;
+    margin-left: 1em;
+}
+
+#profile-name {
+    color: $white;
+    font-size: 1rem;
+    margin: 0 0 0 .5rem;
+    padding: 0;
+}

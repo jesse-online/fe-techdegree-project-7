@@ -5,23 +5,44 @@
 /*====== Colors ======*/
 
 // Main palette
-$color-primary: ;
-$color-secondary: ;
-$color-accent: ;
+$color-primary: #9966CC;
+$color-secondary: #B38CD9;
+$color-tertiary: #E6D9F2;
+$color-accent: #00ff7f; //springgreen
+$color-accent-dark: #00CC4C; //springgreen darkened 20%
+$color-accent-darker: #00B333; //springgreen darkened 30%
+$color-bg: #FBFBFB;
+$color-border: #E4E4E4;
+$color-disabled: slategrey;
 
 // General use
 $white: #fff;
 
-// Images
+// Box shadows
+$box-shadow-lower-lip: 0px 2px 5px #000;
+
+// Text
+$color-display: #222;
+$color-body: #333;
 
 
 
 /*====== Values ======*/
 
 // Typography
+$font-stack-display: 'Rubik', 'Arial', sans-serif;
+$font-stack-body: 'Work Sans', 'Tahoma', sans-serif;
+
+//Scale: 1.125 -- Major second
+$font-size-body: 16px;
+$font-size-h1: 1.602rem;
+$font-size-h2: 1.424rem;
+$font-size-h3: 1.266rem;
 
 // Media queries
-$med: 768px;
+// mobile: 320px
+$tablet: "768px";
+$desktop: "1024px";
 
 // Dimensions
 

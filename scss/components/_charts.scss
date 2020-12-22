@@ -1,0 +1,57 @@
+/* ============================================= */
+/*              Charts                           */
+/* ============================================= */
+
+#traffic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#traffic-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0;   
+}
+
+#traffic-nav li {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 12px;
+    margin-left: .1rem;
+    padding: .5rem;
+    cursor: pointer;
+    
+}
+
+.selected {
+    color: $white;
+    background: $color-accent-dark;
+    border-radius: 15px;
+}
+
+div[class^="widget-container"] {
+    margin-top: 1rem;
+}
+
+@include mq($tablet) {
+
+    #traffic-nav li {
+        font-size: 16px;
+        margin-left: .5rem;
+
+        &:last-child {
+            margin-right: 1.5rem;
+        }
+    }
+
+}
+
+@include mq($desktop) {
+
+    #traffic-nav li:last-child {
+        margin-right: 3rem;
+    }
+}

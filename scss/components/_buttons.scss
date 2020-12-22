@@ -2,6 +2,79 @@
 /*              Buttons                          */
 /* ============================================= */
 
+button {
+    color: $white;
+    padding: .75rem;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button {
+    &-primary {
+        background: $color-primary;
+    }
+
+    &-disabled {
+        background: $color-disabled;
+    }
+}
+
+#messaging button {
+    width: 100%;
+    max-width: 320px;
+    align-self: center;
+}
+
+.switch-ios.switch-light {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    & > strong {
+        flex-basis: 15rem;
+    }
+
+    & > span {
+        width: 8rem;
+        margin-left: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    & > span span {
+        text-align: right;
+        padding-right: 1rem;
+        
+        &+span {
+            text-align: left;
+            padding-left: .5rem;
+        }
+    }
+}
+
+.switch-light::after {
+    content: none;
+}
+
+.settings-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+        flex-basis: 48%;
+    }
+}
+
+@include mq($tablet) {
+    #messaging button {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
 
   
   

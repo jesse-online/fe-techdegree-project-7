@@ -1,0 +1,299 @@
+/* ============================================= */
+/*              Dashboard                      */
+/* ============================================= */
+
+#dash-header {
+    display: flex;
+    align-items: center;
+}
+
+main h2 {
+    flex-grow: .75;
+    background: $white;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+main h3 {
+    margin: 0;
+    padding: 0;
+}
+
+#header-search {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 10rem;
+    flex-grow: 4;
+    background: $color-bg;
+    padding: 1rem;
+    border-bottom: 1px solid $color-border;
+    border-left: 1px solid $color-border;
+}
+
+#search-bar {
+    height: 2rem;
+    width: 9rem;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    padding: .25rem .5rem .25em .25em;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    background: no-repeat 98% 50%/10% url(../img/ico/magnifying-glass.min.svg);
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+#alert {
+    margin: 1rem 1rem 0;
+    font-size: 14px;
+}
+
+.alert-instance {
+    display: flex;
+    padding: 1rem;
+    background-color: $color-primary;
+    color: $white;
+    border-radius: 5px;
+    transition: opacity .25s ease-out;
+}
+
+.alert-instance p:not(:last-child) {
+    margin-right: .5rem;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.invisible {
+    display: none;
+}
+
+.alert-instance:not(:last-child) {
+    margin-bottom: .25rem;
+}
+
+.alert-text {
+    margin: 0 0 0 .5em;
+}
+
+.close-alert {
+    font-size: 1.4em;
+    margin-left: auto;
+    margin-top: -.2em;
+    cursor: pointer;
+}
+
+#main-content-wrapper section {
+    padding: 1.5rem 1rem;
+
+    &:not(:first-child) {
+        border-top: 1px solid $color-border;
+    }
+}
+
+#social-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    
+}
+
+#social-stats,
+#messaging,
+#settings {
+    & h3 {
+        margin-bottom: 1rem;
+    }
+}
+
+.social-wrapper {
+    display: flex;
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+    padding: 1em;
+}
+
+.social-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color-primary;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.social-image svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    text-align: center;
+}
+
+.social-text p {
+    font-weight: bold;
+    color: $color-primary;
+    margin: 0;
+    padding: 0;
+}
+
+.social-text p+p {
+    font-weight: normal;
+    font-size: 2em;
+    color: $color-body;
+}
+
+#member-activity {
+    display: flex;
+    flex-direction: column;
+}
+
+.member-container,
+.activity-container {
+    display: flex;
+    padding: 1rem 0;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $color-border;
+    }
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+
+    & img {
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+    
+    }
+}
+
+.member-text,
+.activity-text {
+    margin-left: .5rem;
+    
+    p {
+        margin: 0 0 .1rem 0;
+    }
+
+    a {
+        font-size: 10px;
+        text-decoration: none;
+    }    
+}
+
+.member-join-date,
+.activity-container p:last-child {
+    font-size: 14px;
+    margin-left: auto;
+}
+
+.activity-container div+p {
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+%form-element {
+    margin-bottom: 1rem;
+    padding: .5rem;
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: 5px;
+}
+
+#messaging form {
+    display: flex;
+    flex-flow: column wrap;
+    
+    & input,
+      textarea {
+        @extend %form-element;
+      }
+}
+
+#messaging textarea {
+    height: 7.13rem;
+}
+
+#settings {
+    margin-bottom: 1rem;
+}
+
+#settings label {
+    margin-bottom: 1rem;
+}
+
+#settings select {
+    @extend %form-element;
+    width: 100%;
+}
+
+@include mq($tablet){
+    main h2 {
+        font-size: $font-size-h2;
+    }
+    #search-bar{
+        width: 15rem;
+        font-size: 1.2rem;
+    }
+
+    #social-stats {
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+
+    #social-stats h3 {
+        flex-basis: 90%;
+    }
+
+    .social-wrapper {
+        flex-basis: 31%;
+        margin-bottom: 0;
+
+        &:not(:last-child) {
+            margin-right: 1rem; 
+        }
+    }
+    
+    #member-activity {
+        border-right: 1px solid $color-border;
+    }
+
+    .member-container,
+    .activity-container {
+        padding: 1.25rem 0;
+
+        & img {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+    
+    .member-text,
+    .activity-text {
+        margin-left: .6rem;
+    }
+    .member-text a {
+        font-size: 13px;
+    }
+
+    .member-join-date,
+    .activity-text p:last-child {
+        font-size: 15px;
+    }
+}
+
+@include mq($desktop) {
+    .social-wrapper {
+        flex-basis: 32%;
+    }
+}

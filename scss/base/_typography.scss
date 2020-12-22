@@ -4,10 +4,35 @@
 
 * {
     box-sizing: border-box;
+    font-kerning: normal;
+    font-variant-ligatures: common-ligatures
+  }
+
+  html {
+    width: 100%;
   }
   
   a {
     text-decoration: none;
+  }
+
+  .bold,
+  strong {
+    font-weight: 600;  
+  }
+
+  .italic,
+  em {
+    font-style: italic;
+  }
+
+  .super {
+    vertical-align: super;
+    font-size: 0.4em;  
+  }
+
+  .lite {
+    font-weight: 300;
   }
   
   
@@ -15,3 +40,33 @@
   /*              Typography                       */
   /* ============================================= */
   
+  body {
+    font-family: $font-stack-body;
+    font-size: $font-size-body;
+    color: $color-body;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: $font-stack-display;
+    margin: .5em;
+    font-weight: 400;
+    color: $color-display;
+  }
+
+  h1 {
+    font-size: $font-size-h1;
+  }
+
+  h2 {
+    font-size: $font-size-h2;
+  }
+
+  h3 {
+    font-size: $font-size-h3;
+  }
+
+  header {
+    color: $color-display;
+  }
