@@ -408,14 +408,16 @@ const emailNotificationSwitch = switches[0];
 const publicProfileSwitch = switches[1];
 const timezoneSelect = document.getElementById("timezone");
 
+/* Listen for click of the save button
+// and store all settings selected by user;
+// subsequently notify the user of this action.
+*/
 saveButton.addEventListener( 'click', (e) => {
     e.preventDefault();
     
-    const timezoneIndex = timezoneSelect.selectedIndex;
-
-    let emailNotification = emailNotificationSwitch.checked;
-    let publicProfile = publicProfileSwitch.checked;
-    let timezone = timezoneIndex;
+    const emailNotification = emailNotificationSwitch.checked;
+    const publicProfile = publicProfileSwitch.checked;
+    const timezone = timezoneSelect.value;
 
     window.localStorage.setItem('email', emailNotification);
     window.localStorage.setItem('public', publicProfile);
@@ -423,6 +425,10 @@ saveButton.addEventListener( 'click', (e) => {
     alert('All settings have been saved.');
 });
 
+/* Listen for a click of the cancel button
+ * and erase all saved settings from localStorage;
+ * subsequently notify the user of this action.
+ */
 cancelButton.addEventListener( 'click', (e) => {
     e.preventDefault();
 
@@ -433,20 +439,46 @@ cancelButton.addEventListener( 'click', (e) => {
     alert('All settings have been reset.');
 });
 
-window.addEventListener('load', () => {
-    let emailNotification = window.localStorage.getItem('email');
-    let publicProfile = window.localStorage.getItem('public');
-    let timezone = window.localStorage.getItem('timezone');
+/* When the page is loaded, check to see if
+ * localStorage holds values and, if so,
+ * call function to retrieve and display settings.
+ */
+ if ( window.localStorage.length > 0 ) {
+    retrieveSettings();
+}
 
-    if ( emailNotification  === "true" ) {
+/* Cycle through localStorage,
+ * retrieve and parse the settings there
+ * and display them in settings for the user
+ */
+function retrieveSettings() {
+
+    /**
+     * Return a parsed value from localStorage if available
+     * @param {string} storedItem - The key of a key:value pair from localStorage
+     * @returns {boolean|number} - Parsed value or false if no value exists
+     */
+    parseItem = ( storedItem ) => {
+        if ( window.localStorage.getItem( storedItem )) {
+            return JSON.parse( window.localStorage.getItem( storedItem ));
+        } else {
+            return false;
+        }
+    }
+    
+    const getsEmailNotifications = parseItem( 'email' );
+    const hasPublicProfile = parseItem( 'public' );
+    const timezone = parseItem( 'timezone' );
+
+    if ( getsEmailNotifications ) {
         emailNotificationSwitch.checked = true;
     }
 
-    if ( publicProfile === "true" ) {
+    if ( hasPublicProfile ) {
         publicProfileSwitch.checked = true;
     }
 
     if ( timezone ) {
         timezoneSelect.value = timezone;
     }
-});
+}
