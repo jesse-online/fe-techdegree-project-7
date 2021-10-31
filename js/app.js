@@ -5,12 +5,13 @@
 const bell = document.getElementById("bell");
 const notificationWrapper = document.getElementById("notifications");
 const notifications = notificationWrapper.getElementsByClassName("notification");
+const targetClass = "invisible";
 
 
 // Listen for click on bell to show/hide notifications
 bell.addEventListener( "click", () => {
     
-    targetClass = "invisible";
+    
 
     // If notification wrapper is already hidden
     if ( notificationWrapper.classList.contains(targetClass) ) {
@@ -39,9 +40,14 @@ window.addEventListener( "load", () => {
             // replace its content with a congratulatory message
             // for the user and remove the 'x'
             if ( countOfNotifications === 1 ) {
-                let notificationText = notificationInstance.firstElementChild;
-                notificationText.textContent = "Congrats! You're all caught up."
-                notificationCloser.remove();
+                const congratsText = "Congrats! You're all caught up.";
+                let notificationPara = notificationInstance.firstElementChild;
+                if ( notificationPara.textContent === congratsText) {
+                    notificationWrapper.classList.add(targetClass);
+                }
+                else {
+                    notificationPara.textContent = congratsText;
+                }
             } else {
             
             // Otherwise just remove the notification
@@ -141,6 +147,61 @@ window.addEventListener("load", () => {
 });
 
 /*//////////////////// 
+        Navigation
+///////////////////*/
+
+//Highlight links as they are hovered over and remember their
+//selection in green when clicked
+const dashNavLinkClass = 'dash-nav__link';
+const navigationLinks = document.getElementsByClassName(dashNavLinkClass);
+const navigationLinkArray = Array.from(navigationLinks);
+
+navigationLinkArray.forEach( link => {
+    const selectedClass = `${dashNavLinkClass}--selected`;
+    const highlightedClass = `${dashNavLinkClass}--highlighted`;
+    
+    //Highlight only unselected links on mouseover
+    link.addEventListener('mouseover', (e) => {
+        const target = e.currentTarget;
+        const targetTag = target.tagName;
+        
+        if (targetTag === 'A') {
+            if (!target.classList.contains(selectedClass)) {
+                target.classList.add(highlightedClass);
+            }
+        }
+    })
+    
+    // Unhighlight only highlighted links on mouseout
+    link.addEventListener('mouseout', (e) => {
+        const target = e.currentTarget;
+        const targetTag = target.tagName;
+        
+        if (targetTag === 'A') {
+            if (target.classList.contains(highlightedClass)) {
+                target.classList.remove(highlightedClass);
+            }
+        }
+    });
+
+    // Mark link as selected when clicked (and remove highlight)
+    link.addEventListener('click', (e) => {
+        const target = e.currentTarget;
+        const targetTag = target.tagName;
+        selectedElement = document.getElementsByClassName(selectedClass)[0];
+
+        if (targetTag === 'A') {
+            if (!target.classList.contains(selectedClass)) {
+                selectedElement.classList.remove(selectedClass);
+                target.classList.remove(highlightedClass);
+                target.classList.add(selectedClass);
+            }
+        }
+    })
+});
+
+
+/*//////////////////// 
         Charts
 ///////////////////*/
 
@@ -237,8 +298,6 @@ const chartDailyTraffic = new Chart(ctxBar, {
             data: [50, 75, 150, 100, 200, 175, 75],
             backgroundColor: "#9966CC",
             borderWidth: 0,
-            // borderSkipped: "bottom",
-            // borderRadius: 30
         }]
     },
     options: {
@@ -330,7 +389,7 @@ function replaceData(timeframe) {
     // Get corresponding data from trafficData object
     let boundedTrafficData = trafficData[timeframe];
 
-    // Relplace chart data and labels with timeframe-specific data
+    // Replace chart data and labels with timeframe-specific data
     chart.data = boundedTrafficData;
 
     //Update chart

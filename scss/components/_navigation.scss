@@ -2,66 +2,76 @@
 /*              Navigation                       */
 /* ============================================= */
 
-nav {
+.dash-nav {
     display: flex;
     justify-content: space-evenly;
     padding: 2em 0;
     background: $color-secondary;
 
-    a {
+    &__link {
         height: 2.7rem;
+
+        &--selected,
+        &--highlighted {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                top: -2em;
+                left: -1em;
+                content: '';
+                height: 5px;
+                width: 4em;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+        }
+
+        &--selected::before {    
+            background: $color-accent;
+        }
+
+        &--highlighted::before {    
+                background: gold;   
+        }
+        
+
+        & svg {
+            height: 3em;
+            width: 2em;
+            cursor: pointer;
+            & #settings-path,
+              #visits-path,
+              #members-path
+               {
+                fill: $color-tertiary;
+            }
+        }
     }
   }
 
-nav a:first-child {
-    position: relative;
-}
-
-nav a:first-child::before {
-    position: absolute;
-    top: -2em;
-    left: -1em;
-    content: '';
-    height: 5px;
-    width: 4em;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background: $color-accent;
-}
-
-nav svg {
-    height: 3em;
-    width: 2em;
-    cursor: pointer;
-    & #settings-path,
-      #visits-path,
-      #members-path
-       {
-        fill: $color-tertiary;
-    }
-}
-
 @include mq($tablet) {
-    nav {
+    .dash-nav {
         flex-direction: column;
         justify-content: left;
         align-items: center;
 
-        a {
+        &__link {
             margin-bottom: 2rem;
+
+            &--selected::before,
+            &--highlighted::before {
+                height: 3em;
+                width: 3px;
+                top: 0;
+                left: -.7em;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 0;
+            }
+
+            & svg {
+                margin-bottom: 1em;
+            }
         }
-    }
-
-    nav a:first-child::before {
-        height: 3em;
-        width: 3px;
-        top: 0;
-        left: -.7em;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 0;
-    }
-
-    nav a svg {
-        margin-bottom: 1em;
     }
 }

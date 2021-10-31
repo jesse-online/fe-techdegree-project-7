@@ -499,21 +499,19 @@ button {
 /* ============================================= */
 /*              Navigation                       */
 /* ============================================= */
-nav {
+.dash-nav {
   display: flex;
   justify-content: space-evenly;
   padding: 2em 0;
   background: #B38CD9;
 }
-nav a {
+.dash-nav__link {
   height: 2.7rem;
 }
-
-nav a:first-child {
+.dash-nav__link--selected, .dash-nav__link--highlighted {
   position: relative;
 }
-
-nav a:first-child::before {
+.dash-nav__link--selected::before, .dash-nav__link--highlighted::before {
   position: absolute;
   top: -2em;
   left: -1em;
@@ -522,31 +520,34 @@ nav a:first-child::before {
   width: 4em;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+.dash-nav__link--selected::before {
   background: #00ff7f;
 }
-
-nav svg {
+.dash-nav__link--highlighted::before {
+  background: gold;
+}
+.dash-nav__link svg {
   height: 3em;
   width: 2em;
   cursor: pointer;
 }
-nav svg #settings-path,
-nav svg #visits-path,
-nav svg #members-path {
+.dash-nav__link svg #settings-path,
+.dash-nav__link svg #visits-path,
+.dash-nav__link svg #members-path {
   fill: #E6D9F2;
 }
 
 @media (min-width: 768px) {
-  nav {
+  .dash-nav {
     flex-direction: column;
     justify-content: left;
     align-items: center;
   }
-  nav a {
+  .dash-nav__link {
     margin-bottom: 2rem;
   }
-
-  nav a:first-child::before {
+  .dash-nav__link--selected::before, .dash-nav__link--highlighted::before {
     height: 3em;
     width: 3px;
     top: 0;
@@ -554,8 +555,7 @@ nav svg #members-path {
     border-top-right-radius: 10px;
     border-bottom-left-radius: 0;
   }
-
-  nav a svg {
+  .dash-nav__link svg {
     margin-bottom: 1em;
   }
 }
